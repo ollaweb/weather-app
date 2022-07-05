@@ -2,11 +2,12 @@
   <Header/>
   <main>
     <Search @updateInput="handleSearch"/>
-    <WeatherInfo :city="search"></WeatherInfo>
+    <WeatherInfo v-if="weather" :weather="weather"></WeatherInfo>
   </main>
 </template>
 
 <script>
+import axios from 'axios'
 import Header from '@/components/Header.vue'
 import Search from '@/components/Search.vue'
 import WeatherInfo from '@/components/WeatherInfo.vue'
@@ -21,14 +22,24 @@ export default {
   data() {
     return {
       API_KEY: '5201204ba6b831682df390b181d676b1',
-      url: 'http://api.openweathermap.org/data/2.5/',
-      search: ''
+      url: 'https://api.openweathermap.org/data/2.5/weather',
+      search: '',
+      weather: null
     }
   },
   methods: {
     handleSearch(data) {
-      this.search = data
-      console.log(this.search)
+      this.search = data.trim().toLowerCase()
+      axios.get(`${this.url}?q=${this.search}&appid=${this.API_KEY}&units=metric`)
+        .then(res => {
+          return res.data
+        })
+        .then(this.setData)
+        .catch(e => console.log(e))
+    },
+    setData(res) {
+      this.weather = res
+      console.log(this.weather)
     }
   }
 }

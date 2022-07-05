@@ -1,9 +1,9 @@
 <template>
   <section class="weather">
     <div class="weather__container container">
-      <h2 class="weather__title">Information about the city: {{city}}</h2>
+      <h2 class="weather__title">Information about the city: {{weather.name}}</h2>
       <div class="weather__info">
-        <Card></Card>
+        <Card :weather="weather"></Card>
       </div>
     </div>
   </section>
@@ -14,9 +14,9 @@ import Card from '@/components/UI/Card.vue';
 
 export default {
   props: {
-    city: {
-      type: String,
-      default: ''
+    weather: {
+      type: Object,
+      default: {}
     }
   },
   components: {

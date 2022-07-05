@@ -1,12 +1,23 @@
 <template>
   <div class="card">
     <div class="card__wrapper">
-      <p class="card__date">05.07.2022</p>
-      <h3 class="card__city">Moscow</h3>
-      <p class="card__temperature">+30 C</p>
+      <h3 class="card__city">{{weather.name}}</h3>
+      <p class="card__temperature">{{Math.round(weather.main.temp)}}</p>
+      <p class="card__condition">{{weather.weather[0].main}}</p>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    weather: {
+      type: Object,
+      default: {}
+    }
+  },
+}
+</script>
 
 <style lang="scss">
   .card {
@@ -17,12 +28,6 @@
     box-shadow: 3px 3px 7px 1px rgba(65, 3, 83, 0.2);
     @media (min-width: 768px) {
       max-width: 40%;
-    }
-    &__date {
-      font-weight: 200;
-      font-size: 18px;
-      line-height: 150%;
-      text-align: right;
     }
     &__city {
       margin-top: 20px;
@@ -36,6 +41,9 @@
       font-weight: 900;
       font-size: 48px;
       line-height: 150%;
+      text-align: center;
+    }
+    &__condition {
       text-align: center;
     }
   }

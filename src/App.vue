@@ -1,26 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Header/>
+  <main>
+    <Search @updateInput="handleSearch"/>
+    <WeatherInfo :city="search"></WeatherInfo>
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from '@/components/Header.vue'
+import Search from '@/components/Search.vue'
+import WeatherInfo from '@/components/WeatherInfo.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    Search,
+    WeatherInfo
+  },
+  data() {
+    return {
+      API_KEY: '5201204ba6b831682df390b181d676b1',
+      url: 'http://api.openweathermap.org/data/2.5/',
+      search: ''
+    }
+  },
+  methods: {
+    handleSearch(data) {
+      this.search = data
+      console.log(this.search)
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import '@/assets/scss/main.scss';
+  #app {
+    min-height: 100vh;
+    background-image: url('@/assets/img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 10%;
+  }
+
 </style>

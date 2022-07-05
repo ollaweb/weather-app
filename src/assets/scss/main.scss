@@ -1,0 +1,12 @@
+@import 'utils/utils';
+@import 'common/common';
+
+html, body {
+  font-family: $mainFont;
+  font-weight: $mainFontWeight;
+  font-size: calc($mainFontSize*0.8);
+  line-height: $mainLineHeight;
+  @media (min-width: $tabletWidth) {
+    font-size: $mainFontSize;
+  }
+}

@@ -2,13 +2,21 @@
   <div class="card">
     <div class="card__wrapper">
       <h3 class="card__city">{{weather.name}}</h3>
-      <p class="card__temperature">{{Math.round(weather.main.temp)}}</p>
-      <p class="card__condition">{{weather.weather[0].main}}</p>
+      <p class="card__temperature">{{Math.round(weather.main.temp)}} &#176;C</p>
+      <div class="card__condition">
+        <div class="card__clouds card-clouds">
+          {{weather.weather[0].main}}
+          <div class="card-clouds__image">
+            <img :src="getImageUrl" :alt="weather.weather[0].description">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   props: {
     weather: {
@@ -16,6 +24,11 @@ export default {
       default: {}
     }
   },
+  computed: {
+    getImageUrl() {
+      return `http://openweathermap.org/img/wn/${this.weather.weather[0].icon}.png`
+    }
+  }
 }
 </script>
 
@@ -45,6 +58,17 @@ export default {
     }
     &__condition {
       text-align: center;
+    }
+  }
+
+  .card-clouds {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    &__image {
+      background-color: rgba(177, 140, 154, 0.5);
+      border-radius: 100%;
     }
   }
 </style>

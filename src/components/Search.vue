@@ -5,6 +5,7 @@
         <AppInput v-model="searchText" @updateInput="updateInput" placeholder="Type the city..."/>
         <AppButton type="submit">Search</AppButton>
       </form>
+      <RecentSearch v-if="recentSearch.length !=0" :recentSearch="recentSearch"/>
     </div>
   </div>
 </template>
@@ -12,11 +13,18 @@
 <script>
 import AppInput from '@/components/UI/controls/Input.vue'
 import AppButton from '@/components/UI/controls/Button.vue'
+import RecentSearch from '@/components/UI/RecentSearch.vue'
 
 export default {
   components: {
     AppInput,
-    AppButton
+    AppButton,
+    RecentSearch
+  },
+  props: {
+    recentSearch: {
+      type: Array
+    }
   },
   data() {
     return {

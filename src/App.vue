@@ -46,9 +46,9 @@ export default {
   },
   methods: {
     handleSearch(data) {
-      this.search = data
+      this.search = data.toLowerCase()
       this.getData()
-        this.setToLocalStorage()
+      this.setRecentSearch()
     },
     async getData() {
       if(this.search) {
@@ -63,10 +63,12 @@ export default {
                       })
       }
     },
-    setToLocalStorage() {
-      this.recentSearch.push(this.search[0].toUpperCase() + this.search.slice(1))
-      if(this.recentSearch.length > 3) {
-        this.recentSearch.shift()
+    setRecentSearch() {
+      if(!this.recentSearch.includes(this.search)) {
+        this.recentSearch.push(this.search)
+        if(this.recentSearch.length > 3) {
+          this.recentSearch.shift()
+        }
       }
     },
     getFromLocalStorage() {
@@ -74,7 +76,7 @@ export default {
       if (localRecentSearch && localRecentSearch.length !== 2) {
         this.recentSearch = JSON.parse(localRecentSearch);
       }
-    }
+    },
   }
 }
 </script>

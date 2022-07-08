@@ -5,7 +5,7 @@
         <AppInput v-model="searchText" @updateInput="updateInput" placeholder="Type the city..."/>
         <AppButton type="submit">Search</AppButton>
       </form>
-      <RecentSearch v-if="recentSearch.length !=0" :recentSearch="recentSearch"/>
+      <RecentSearch v-if="recentSearch.length !=0" :recentSearch="recentSearch" @selectRecent="searchByRecentSearch"/>
     </div>
   </div>
 </template>
@@ -32,10 +32,15 @@ export default {
     }
   },
   methods: {
-    updateInput(text) {
-      this.searchText = text.trim().toLowerCase()
+    updateInput(city) {
+      this.searchText = city.trim()
     },
     search() {
+      this.$emit('updateInput', this.searchText)
+      this.searchText = ''
+    },
+    searchByRecentSearch(city) {
+      this.searchText = city
       this.$emit('updateInput', this.searchText)
       this.searchText = ''
     }

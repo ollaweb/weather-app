@@ -1,6 +1,6 @@
 <template>
   <div class="recent-search">
-    <p :recentSearch="recentSearch" class="recent-search__text">Recent searches: <span @click="selectRecent" v-for="(search, index) in recentSearch" :key="index">{{search}}</span></p>
+    <p :recentSearch="recentSearch" class="recent-search__text">Recent searches: <span @click="selectRecent" v-for="(search, index) in recentSearch" :key="index">{{search[0].toUpperCase() + search.slice(1)}}</span></p>
   </div>
 </template>
 
@@ -17,10 +17,8 @@ export default {
     }
   },
   methods: {
-    selectRecent() {
-      // this.selectSearch = this.search
-      // this.$emit('selectRecent', this.selectSearch)
-      console.log(this.$el.textContent)
+    selectRecent(e) {
+      this.$emit('selectRecent', e.target.textContent)
     }
   }
 }

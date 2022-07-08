@@ -33,11 +33,25 @@ export default {
 
     }
   },
+  mounted() {
+    this.getFromLocalStorage();
+  },
+  watch: {
+    recentSearch: {
+      handler(updatedList) {
+        localStorage.setItem('recentSearch', JSON.stringify(updatedList))
+      },
+      deep: true
+    }
+  },
   methods: {
-    async handleSearch(data) {
-      if(data.trim()) {
-        this.search = data.trim().toLowerCase()
-
+    handleSearch(data) {
+      this.search = data
+      this.getData()
+        this.setToLocalStorage()
+    },
+    async getData() {
+      if(this.search) {
         const getWeather = axios.get(`${this.url}weather?q=${this.search}&appid=${this.API_KEY}&units=metric`)
         const getForecast = axios.get(`${this.url}forecast?q=${this.search}&appid=${this.API_KEY}&units=metric`)
 
@@ -47,8 +61,18 @@ export default {
                         this.forecast = forecast
                         console.log(this.forecast)
                       })
-
-        this.recentSearch.push(this.search[0].toUpperCase() + this.search.slice(1))
+      }
+    },
+    setToLocalStorage() {
+      this.recentSearch.push(this.search[0].toUpperCase() + this.search.slice(1))
+      if(this.recentSearch.length > 3) {
+        this.recentSearch.shift()
+      }
+    },
+    getFromLocalStorage() {
+      const localRecentSearch = localStorage.getItem('recentSearch');
+      if (localRecentSearch && localRecentSearch.length !== 2) {
+        this.recentSearch = JSON.parse(localRecentSearch);
       }
     }
   }

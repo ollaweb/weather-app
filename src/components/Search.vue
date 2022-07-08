@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     updateInput(text) {
-      this.searchText = text
+      this.searchText = text.trim().toLowerCase()
     },
     search() {
       this.$emit('updateInput', this.searchText)

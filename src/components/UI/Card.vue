@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card__wrapper">
-      <div class="card__date">{{new Date(weather.dt*1000).toLocaleTimeString()}}</div>
+      <div class="card__date"><span>{{date}}</span><span>{{time}}</span></div>
       <h3 class="card__city">{{weather.name}}</h3>
       <div class="card__temperature">
         <p class="card__temperature_now">{{Math.round(weather.main.temp)}} &#176;C</p>
@@ -34,6 +34,18 @@ export default {
   computed: {
     getImageUrl() {
       return `http://openweathermap.org/img/wn/${this.weather.weather[0].icon}.png`
+    },
+    date() {
+        return new Date(this.weather.dt*1000).toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric"
+      })
+    },
+    time() {
+      return new Date(this.weather.dt*1000).toLocaleTimeString("ru", {
+        hour: "numeric",
+        minute: "numeric",
+      })
     }
   }
 }
@@ -48,6 +60,15 @@ export default {
     box-shadow: 3px 3px 7px 1px rgba(65, 3, 83, 0.2);
     @media (min-width: 768px) {
       max-width: 40%;
+    }
+    &__date {
+      text-align: right;
+      & span{
+        display: inline-block;
+        &:first-child {
+          margin-right: 10px;
+        }
+      }
     }
     &__city {
       margin-top: 20px;

@@ -1,8 +1,15 @@
 <template>
   <div class="card">
     <div class="card__wrapper">
+      <div class="card__date">{{new Date(weather.dt*1000).toLocaleTimeString()}}</div>
       <h3 class="card__city">{{weather.name}}</h3>
-      <p class="card__temperature">{{Math.round(weather.main.temp)}} &#176;C</p>
+      <div class="card__temperature">
+        <p class="card__temperature_now">{{Math.round(weather.main.temp)}} &#176;C</p>
+        <div class="card__temperature_feels">
+          <p>Feels like</p>
+          <p>{{Math.round(weather.main.feels_like)}} &#176;C</p>
+        </div>
+      </div>
       <div class="card__condition">
         <div class="card__clouds card-clouds">
           {{weather.weather[0].main}}
@@ -35,7 +42,7 @@ export default {
 <style lang="scss">
   .card {
     margin: 0 auto;
-    padding: 20px 10px;
+    padding: 20px 80px;
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 10px;
     box-shadow: 3px 3px 7px 1px rgba(65, 3, 83, 0.2);
@@ -47,16 +54,20 @@ export default {
       font-weight: 600;
       font-size: 28px;
       line-height: 150%;
-      text-align: center;
       text-transform: uppercase;
     }
     &__temperature {
-      font-weight: 900;
-      font-size: 48px;
-      line-height: 150%;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &_now {
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 150%;
+      }
     }
     &__condition {
+      margin-top: 15px;
       text-align: center;
     }
   }

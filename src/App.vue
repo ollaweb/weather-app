@@ -59,7 +59,8 @@ export default {
                       .then(([{data: weather} , {data: forecast}]) => {
                         this.weather = weather
                         this.forecast = forecast
-                        console.log(this.forecast)
+                        console.log(this.weather)
+                        // console.log(this.forecast)
                       })
       }
     },

@@ -1,12 +1,12 @@
 <template>
   <div class="card">
     <div class="card__wrapper">
-      <div class="card__date"><div>{{date}}</div><div>{{time}}</div></div>
+      <div class="card__date card-date"><div>{{date}}</div><div>{{time}}</div></div>
       <div class="card__data">
         <h3 class="card__city">{{weather.name}}</h3>
-        <div class="card__temperature">
-          <p class="card__temperature_now">{{Math.round(weather.main.temp)}} &#176;C</p>
-          <div class="card__temperature_feels">
+        <div class="card__temperature card-temperature">
+          <p class="card-temperature_now">{{Math.round(weather.main.temp)}} &#176;C</p>
+          <div class="card-temperature_feels">
             <p>Feels like</p>
             <p>{{Math.round(weather.main.feels_like)}} &#176;C</p>
           </div>
@@ -69,18 +69,6 @@ export default {
     @media (min-width: 1200px) {
       max-width: 40%;
     }
-    &__date {
-      text-align: right;
-      & div{
-        &:first-child {
-          color: #B18C9A;
-        }
-        &:last-child {
-          font-size: 18px;
-          line-height: 100%;
-        }
-      }
-    }
     &__data {
       padding: 0 10%;
       @media (min-width: 400px) {
@@ -103,7 +91,24 @@ export default {
         font-size: 28px;
       }
     }
-    &__temperature {
+    &__condition {
+      margin-top: 15px;
+      text-align: center;
+    }
+  }
+  .card-date {
+    text-align: right;
+      & div{
+        &:first-child {
+          color: #B18C9A;
+        }
+        &:last-child {
+          font-size: 18px;
+          line-height: 100%;
+        }
+      }
+  }
+  .card-temperature {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -117,12 +122,6 @@ export default {
         }
       }
     }
-    &__condition {
-      margin-top: 15px;
-      text-align: center;
-    }
-  }
-
   .card-clouds {
     display: flex;
     gap: 20px;

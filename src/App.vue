@@ -3,6 +3,7 @@
   <main>
     <Search @updateInput="handleSearch" :recentSearch="recentSearch"/>
     <WeatherInfo v-if="weather" :weather="weather"></WeatherInfo>
+    <Forecast v-if="forecast" :forecast="forecast"></Forecast>
     <!-- <div v-if="forecast">
       <p v-for="date in forecast.list" :key="date.dt">{{new Date(date.dt*1000).toLocaleString().toString()}}</p>
     </div> -->
@@ -14,6 +15,7 @@ import axios from 'axios'
 import Header from '@/components/Header.vue'
 import Search from '@/components/Search.vue'
 import WeatherInfo from '@/components/WeatherInfo.vue'
+import Forecast from '@/components/Forecast.vue'
 
 export default {
   name: 'App',
@@ -21,6 +23,7 @@ export default {
     Header,
     Search,
     WeatherInfo,
+    Forecast
   },
   data() {
     return {
@@ -63,6 +66,7 @@ export default {
                         console.log(this.forecast)
                       })
       }
+      console.log(this.forecast.list[0].main.temp)
     },
     setRecentSearch() {
       if(!this.recentSearch.includes(this.search)) {

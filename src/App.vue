@@ -1,7 +1,7 @@
 <template>
-  <Header/>
+  <Header />
   <main>
-    <Search @updateInput="handleSearch" :recentSearch="recentSearch"/>
+    <Search @updateInput="handleSearch" :recentSearch="recentSearch" />
     <WeatherInfo v-if="weather" :weather="weather"></WeatherInfo>
     <Forecast v-if="forecast" :forecast="forecast"></Forecast>
     <!-- <div v-if="forecast">
@@ -32,12 +32,11 @@ export default {
       search: '',
       recentSearch: [],
       weather: null,
-      forecast: null,
-
+      forecast: null
     }
   },
   mounted() {
-    this.getFromLocalStorage();
+    this.getFromLocalStorage()
   },
   watch: {
     recentSearch: {
@@ -54,46 +53,49 @@ export default {
       this.setRecentSearch()
     },
     async getData() {
-      if(this.search) {
-        const getWeather = axios.get(`${this.url}weather?q=${this.search}&appid=${this.API_KEY}&units=metric`)
-        const getForecast = axios.get(`${this.url}forecast?q=${this.search}&appid=${this.API_KEY}&units=metric`)
+      if (this.search) {
+        const getWeather = axios.get(
+          `${this.url}weather?q=${this.search}&appid=${this.API_KEY}&units=metric`
+        )
+        const getForecast = axios.get(
+          `${this.url}forecast?q=${this.search}&appid=${this.API_KEY}&units=metric`
+        )
 
-        await Promise.all([getWeather, getForecast])
-                      .then(([{data: weather} , {data: forecast}]) => {
-                        this.weather = weather
-                        this.forecast = forecast
-                        console.log(this.weather)
-                        console.log(this.forecast)
-                      })
+        await Promise.all([getWeather, getForecast]).then(
+          ([{ data: weather }, { data: forecast }]) => {
+            this.weather = weather
+            this.forecast = forecast.list
+            console.log(this.weather)
+            console.log(this.forecast)
+          }
+        )
       }
-      console.log(this.forecast.list[0].main.temp)
     },
     setRecentSearch() {
-      if(!this.recentSearch.includes(this.search)) {
+      if (!this.recentSearch.includes(this.search)) {
         this.recentSearch.push(this.search)
-        if(this.recentSearch.length > 3) {
+        if (this.recentSearch.length > 3) {
           this.recentSearch.shift()
         }
       }
     },
     getFromLocalStorage() {
-      const localRecentSearch = localStorage.getItem('recentSearch');
+      const localRecentSearch = localStorage.getItem('recentSearch')
       if (localRecentSearch && localRecentSearch.length !== 2) {
-        this.recentSearch = JSON.parse(localRecentSearch);
+        this.recentSearch = JSON.parse(localRecentSearch)
       }
-    },
+    }
   }
 }
 </script>
 
 <style lang="scss">
-  @import '@/assets/scss/main.scss';
-  #app {
-    min-height: 100vh;
-    background-image: url('@/assets/img/background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position-y: 10%;
-  }
-
+@import '@/assets/scss/main.scss';
+#app {
+  min-height: 100vh;
+  background-image: url('@/assets/img/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 10%;
+}
 </style>

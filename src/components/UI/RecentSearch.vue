@@ -1,6 +1,14 @@
 <template>
   <div class="recent-search">
-    <p :recentSearch="recentSearch" class="recent-search__text">Recent searches: <span @click="selectRecent" v-for="(search, index) in recentSearch" :key="index">{{search[0].toUpperCase() + search.slice(1)}}</span></p>
+    <p :recentSearch="recentSearch" class="recent-search__text">
+      Recent&nbsp;searches:
+      <span
+        @click="selectRecent"
+        v-for="(search, index) in recentSearch"
+        :key="index"
+        >{{ search[0].toUpperCase() + search.slice(1) }}</span
+      >
+    </p>
   </div>
 </template>
 
@@ -13,7 +21,7 @@ export default {
   },
   data() {
     return {
-      selectSearch :''
+      selectSearch: ''
     }
   },
   methods: {
@@ -25,15 +33,17 @@ export default {
 </script>
 
 <style lang="scss">
-  .recent-search {
-    padding-left: 12px;
-    &__text {
-      & span {
-        margin: 0 5px;
-        text-decoration: underline;
-        color: #B18C9A;
-        cursor: pointer;
-      }
+.recent-search {
+  padding-left: 12px;
+  &__text {
+    display: flex;
+    flex-wrap: wrap;
+    & span {
+      margin: 0 5px;
+      text-decoration: underline;
+      color: #a15c76;
+      cursor: pointer;
     }
   }
+}
 </style>

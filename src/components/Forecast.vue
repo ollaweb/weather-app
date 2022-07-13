@@ -40,11 +40,21 @@ export default {
 
 <style lang="scss">
 .forecast {
+  padding: 20px 0;
   &__info {
-    display: flex;
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    justify-content: space-between;
-    align-items: center;
+    @media (min-width: 576px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 992px) {
+      display: flex;
+      gap: 15px;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 }
 </style>

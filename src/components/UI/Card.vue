@@ -61,7 +61,7 @@ export default {
 .card {
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   box-shadow: 3px 3px 7px 1px rgba(65, 3, 83, 0.2);
   @media (min-width: 576px) {
@@ -88,11 +88,11 @@ export default {
   &__city {
     margin-top: 20px;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 150%;
     text-transform: uppercase;
     @media (min-width: 768px) {
-      font-size: 28px;
+      font-size: 24px;
     }
   }
   &__condition {
@@ -104,11 +104,18 @@ export default {
   text-align: right;
   & div {
     &:first-child {
-      color: #b18c9a;
+      color: #a15c76;
+      font-size: 18px;
+      @media (min-width: 992px) {
+        font-size: 20px;
+      }
     }
     &:last-child {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 100%;
+      @media (min-width: 992px) {
+        font-size: 18px;
+      }
     }
   }
 }
@@ -121,7 +128,7 @@ export default {
     font-weight: 900;
     font-size: 38px;
     line-height: 150%;
-    @media (min-width: 768px) {
+    @media (min-width: 1200px) {
       font-size: 48px;
     }
   }

@@ -1,12 +1,12 @@
 <template>
-  <div class="small-card card">
+  <div class="small-card">
     <div class="small-card__wrapper">
       <div class="small-card__date card-date">
         <div>{{ date }}</div>
         <div>{{ time }}</div>
       </div>
-      <div class="small-card__temperature card-temperature">
-        <div class="card-temperature_now">
+      <div class="small-card__temperature">
+        <div class="small-card__temperature_value">
           {{ Math.round(forecast.main.temp) }} &#176;C
         </div>
       </div>
@@ -50,14 +50,40 @@ export default {
 
 <style lang="scss">
 .small-card {
-  background-color: rgba(255, 255, 255, 0.6);
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 3px 3px 7px 1px rgba(65, 3, 83, 0.2);
   &__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+  &__date {
+    align-self: flex-end;
+  }
+  &__temperature {
+    margin-top: 20px;
+    &_value {
+      font-weight: 700;
+      font-size: 24px;
+      @media (min-width: 768px) {
+        font-size: 32px;
+      }
+    }
+  }
   &__clouds {
+    margin-top: 15px;
     text-align: center;
+    & div:last-child {
+      margin-top: 15px;
+      font-size: 18px;
+      @media (min-width: 992px) {
+        font-size: 20px;
+      }
+    }
     & .card-clouds-image {
       margin: 0 auto;
       max-width: 50px;

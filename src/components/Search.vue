@@ -9,11 +9,13 @@
         />
         <AppButton type="submit">Search</AppButton>
       </form>
-      <RecentSearch
-        v-if="recentSearch.length != 0"
-        :recentSearch="recentSearch"
-        @selectRecent="searchByRecentSearch"
-      />
+      <div class="search__recent">
+        <RecentSearch
+          v-if="recentSearch.length != 0"
+          :recentSearch="recentSearch"
+          @selectRecent="searchByRecentSearch"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -58,7 +60,7 @@ export default {
 
 <style lang="scss">
 .search {
-  padding: 10px 0;
+  padding: 20px 0 10px;
   @media (min-width: 576px) {
     padding: 35px 0 0;
   }
@@ -68,6 +70,9 @@ export default {
     gap: 20px;
     align-items: center;
     justify-content: space-between;
+  }
+  &__recent {
+    margin-top: 6px;
   }
 }
 </style>

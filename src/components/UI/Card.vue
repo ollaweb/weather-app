@@ -16,6 +16,28 @@
             <p>{{ Math.round(weather.main.feels_like) }} &#176;C</p>
           </div>
         </div>
+        <div class="card__sun">
+          <div>
+            <p>Sunrise</p>
+            <div>
+              <img
+                src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/1723310/sunrise-clipart-md.png"
+                alt="sunrise"
+              />
+            </div>
+            <p>{{ timeOfSunrise }}</p>
+          </div>
+          <div>
+            <p>Sunset</p>
+            <div>
+              <img
+                src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/78211/sunset-clipart-md.png"
+                alt="sunset"
+              />
+            </div>
+            <p>{{ timeOfSunset }}</p>
+          </div>
+        </div>
         <div class="card__condition">
           <div class="card__clouds card-clouds">
             {{ weather.weather[0].main }}
@@ -52,6 +74,12 @@ export default {
     },
     time() {
       return timeFromTimestamp(this.weather.dt)
+    },
+    timeOfSunrise() {
+      return timeFromTimestamp(this.weather.sys.sunrise)
+    },
+    timeOfSunset() {
+      return timeFromTimestamp(this.weather.sys.sunset)
     }
   }
 }
@@ -95,8 +123,26 @@ export default {
       font-size: 24px;
     }
   }
+  &__sun {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-around;
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+      & > div {
+        margin-top: 8px;
+        margin-bottom: 5px;
+        width: 70px;
+      }
+    }
+  }
   &__condition {
-    margin-top: 15px;
+    margin-top: 24px;
     text-align: center;
   }
 }

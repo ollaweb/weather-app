@@ -6,7 +6,7 @@ export const dateFromTimestamp = (timestamp) => {
 }
 
 export const timeFromTimestamp = (timestamp) => {
-  return (timestamp * 1000 - new Date().getTime()) < 10800000 ? 'now' : new Date(timestamp * 1000).toLocaleTimeString("ru", {
+  return new Date(timestamp * 1000).toLocaleTimeString("ru", {
     hour: "numeric",
     minute: "numeric",
   })

@@ -34,7 +34,7 @@ export default {
 
 <style lang="scss">
 .recent-search {
-  padding-left: 12px;
+  padding-left: 3px;
   &__text {
     display: flex;
     flex-wrap: wrap;

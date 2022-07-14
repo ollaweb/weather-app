@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card__wrapper">
       <div class="card__date card-date">
-        <div>{{ date }}</div>
+        <!-- <div>{{ date }}</div> -->
         <div>{{ time }}</div>
       </div>
       <div class="card__data">
@@ -87,32 +87,10 @@ export default {
 
 <style lang="scss">
 .card {
-  margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   box-shadow: 3px 3px 7px 1px rgba(65, 3, 83, 0.2);
-  @media (min-width: 576px) {
-    max-width: 70%;
-  }
-  @media (min-width: 992px) {
-    max-width: 50%;
-  }
-  @media (min-width: 1200px) {
-    max-width: 40%;
-  }
-  &__data {
-    padding: 0 10%;
-    @media (min-width: 400px) {
-      padding: 0 20%;
-    }
-    @media (min-width: 576px) {
-      padding: 0 50px;
-    }
-    @media (min-width: 768px) {
-      padding: 0 80px;
-    }
-  }
   &__city {
     margin-top: 20px;
     font-weight: 600;
@@ -121,6 +99,15 @@ export default {
     text-transform: uppercase;
     @media (min-width: 768px) {
       font-size: 24px;
+    }
+  }
+  &__data {
+    padding: 0 8%;
+    @media (min-width: 400px) {
+      padding: 0 15%;
+    }
+    @media (min-width: 768px) {
+      padding: 0 20px;
     }
   }
   &__sun {

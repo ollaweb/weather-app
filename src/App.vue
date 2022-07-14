@@ -2,7 +2,11 @@
   <Header />
   <main>
     <Search @updateInput="handleSearch" :recentSearch="recentSearch" />
-    <WeatherInfo v-if="weather" :weather="weather"></WeatherInfo>
+    <WeatherInfo
+      v-if="weather && forecast"
+      :weather="weather"
+      :forecast="forecast"
+    ></WeatherInfo>
     <Forecast v-if="forecast" :forecast="forecast"></Forecast>
     <!-- <div v-if="forecast">
       <p v-for="date in forecast.list" :key="date.dt">{{new Date(date.dt*1000).toLocaleString().toString()}}</p>
